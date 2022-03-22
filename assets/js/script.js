@@ -22,6 +22,21 @@ var getCityWeather = function (city) {
     });
 };
 
+var formSubmitHandler = function (event) {
+    event.preventDefault();
+  
+    // get value from input element
+    var cityName = cityInputEl.value.trim();
+    if (cityName) {
+      getCityWeather(cityName);
+      // clear search input
+      $("#city").val("");
+
+    } else {
+      alert("Please enter a city");
+    }
+};
+
 var displayWeather = function (weatherData) {
       // format and display data
   $("#current-weather").addClass("border border-secondary border-2");
