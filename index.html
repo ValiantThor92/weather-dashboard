@@ -11,22 +11,34 @@
 </head>
 
 <body>
-    <header class="bg-primary bg-gradient">
+    <header class="bg-success bg-gradient">
         <h1>Weather Dashboard</h1>
     </header>
 
     <main class="m-4 p-4">
-        <h2>Enter City Name:</h2>
-        <form id="city-form">
-          <div class="mb-3">
-            <input
-              id="city"
-              type="text"
-              autofocus="true"
-              class="form-control form-control-lg"
-            />
-          </div>
-        </form>
+        <div class="row">
+            <div class="col-12 col-md-3 d-flex flex-column p-4"></div>
+                <div class="city-search border-bottom border-success border-5 mb-3">
+                    <h2>Enter City Name:</h2>
+                    <form id="city-form">
+                        <div class="mb-3">
+                            <input
+                            id="city"
+                            type="text"
+                            autofocus="true"
+                            class="form-control form-control-lg"
+                            />
+                        </div>
+                    </form>
+
+                    <div class="d-grid gap-5 mb-3">
+                        <button type="submit" class="btn btn-primary" id="search">
+                        Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     
 
