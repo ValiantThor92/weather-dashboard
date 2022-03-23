@@ -16,11 +16,14 @@
     </header>
 
     <main class="m-4 p-4">
-        <div class="row">
-            <div class="col-12 col-md-3 d-flex flex-column p-4"></div>
-                <div class="city-search border-bottom border-success border-5 mb-3">
 
-                    <h2>Enter City Name:</h2>
+        <div class="row">
+            
+            <!-- left column -->
+            <div class="col-12 col-md-3 d-flex flex-column p-4"></div>
+                <!-- city search form -->
+                <div class="city-search border-bottom border-success border-5 mb-3">
+                    <h2>Enter City:</h2>
                     <form id="city-form">
                         <div class="mb-3">
                             <input
@@ -31,7 +34,7 @@
                             />
                         </div>
                     </form>
-
+                    <!-- form submission -->
                     <div class="d-grid gap-5 mb-3">
                         <button type="submit" class="btn btn-primary" id="search">
                         Search
@@ -61,7 +64,7 @@
         </div>
 
     </main>
-    
+    <!-- jquery dayjs and script.js src tags -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.3/dayjs.min.js"></script>
     <script src="./assets/js/script.js"></script>
