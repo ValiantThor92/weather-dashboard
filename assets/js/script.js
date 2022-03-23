@@ -3,6 +3,9 @@ var cityInputEl = document.querySelector("#city");
 var weatherContainerEl = document.querySelector("#weather-container");
 var cityTitleEl = document.querySelector("#current-weather-title");
 var forecastTitle = document.querySelector("#forecast-title");
+// search history array
+var searchedCities = [];
+var searchedCity = "";
 
 var getCityWeather = function (city) {
     // openweather api url w/ query string parameters
@@ -69,7 +72,9 @@ var displayWeather = function (weatherData) {
 
      });
 
-
+    // save the city
+    searchedCity = weatherData.name;
+    saveSearchedCities(weatherData.name);
 };
 
 var displayForecast = function (data) {
@@ -114,5 +119,53 @@ var displayForecast = function (data) {
 
 };
 
+// save search history to local storage
+var saveSearchedCities = function(city) {
+    if (!searchedCities.includes(city)) {
+        searchedCities.push(city);
+    }
+    localStorage.setItem("searchHistory", JSON.stringify(searchedCities));
+    localStorage.setItem("searchedCity", JSON.stringify(searchedCity));
+
+    // display searched cities
+    loadSearchedCities();
+}
+
+var loadSearchedCities = function () {
+    searchedCities = JSON.parse(localStorage.getItem("searchHistory"));
+    searchedCity = JSON.parse(localStorage.getItem("searchedCity"));
+
+    // create empty array and string if nothing saved in local storage
+    if (!searchedCities) {
+        searchedCities = [];
+    }
+    if (!searchedCity) {
+        searchedCity = "";
+    }
+
+    // clear previous saved cities
+    $("#saved-cities").empty();
+
+    // loop through each city in searchedCities array
+    for (i = 0; i < searchedCities.length; i++) {
+
+        // create button
+        var cityBtn = $("<button>").addClass("btn btn-secondary").attr("type", "submit").attr("id", searchedCities[i]).text(searchedCities[i]);
+
+        // append button to parent div on the page
+        $("#saved-cities").append(cityBtn);
+    }
+
+};
+
+loadSearchedCities();
+
 // event handlers
 $("#search").on("click", formSubmitHandler);
+
+$("#saved-cities").on("click", function (event) {
+    // get button id
+    let selectedCity = $(event.target).closest("button").attr("id");
+    // pass id through getCityWeather
+    getCityWeather(selectedCity);
+});
