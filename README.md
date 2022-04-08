@@ -36,7 +36,7 @@ SO THAT I can organize my thoughts and keep track of tasks I need to complete
 
 ## Screenshots
 
-<img src="./assets/screenshots/weather-dashboard.JPG">
+<img src="assets\weather-dashboard..JPG">
 
 
 ## Link
