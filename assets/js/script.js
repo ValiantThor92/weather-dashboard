@@ -66,8 +66,9 @@ var displayWeather = function (weatherData) {
   
     response.json().then(function (data) {
       //  current uvIndex
-      $("#current-weather-uvi").text("UVI Index: " + data.current.uvi)
+      $("#current-weather-uvi").text("UV Index: " + data.current.uvi)
 
+      // begin conditional for styling uv index section based on value
       var uvIndexValue = data.current.uvi.toFixed(1);
       uvIndexEl.id = "uv-index";
     
