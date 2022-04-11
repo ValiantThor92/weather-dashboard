@@ -29,19 +29,19 @@ var getCityWeather = function (city) {
 };
 
 var formSubmitHandler = function (event) {
-    // prevent html refresh
-    event.preventDefault();
-  
-    // get value from input element
-    var cityName = cityInputEl.value.trim();
-    if (cityName) {
-      getCityWeather(cityName);
-      // clear search input
-      $("#city").val("");
+  // prevent html refresh
+  event.preventDefault();
 
-    } else {
-      alert("Please enter a city");
-    }
+  // get value from input element
+  var cityName = cityInputEl.value.trim();
+  if (cityName) {
+    getCityWeather(cityName);
+    // clear search input
+    $("#city").val("");
+
+  } else {
+    alert("Please enter a city");
+  }
 };
 
 var displayWeather = function (weatherData) {
@@ -61,11 +61,21 @@ var displayWeather = function (weatherData) {
   fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + weatherData.coord.lat + "&lon=" + weatherData.coord.lon + "&appid=a42b1bffc45c35fcb28a1fcc1fc29685&units=imperial")
 
   .then(function (response) {
+    
+    if ("#current-weather-uvi" >= 0) {
+      uvIndex.className = "uv-index-green"
+    }
+    if ("#current-weather-uvi" >= 3) {
+        uvIndex.className = "uv-index-yellow"
+    }
+    if ("#current-weather-uvi" >= 8) {
+        uvIndex.className = "uv-index-red"
+    }
 
     response.json().then(function (data) {
-      // display the uv index value
       $("#current-weather-uvi").text("UVI Index: " + data.current.uvi);
-
+     
+      
       // display 5-day forecast
       displayForecast(data);
     });
