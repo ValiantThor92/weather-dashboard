@@ -3,7 +3,7 @@ var cityInputEl = document.querySelector("#city");
 var weatherContainerEl = document.querySelector("#weather-container");
 var cityTitleEl = document.querySelector("#current-weather-title");
 var forecastTitle = document.querySelector("#forecast-title");
-var uvIndex = document.querySelector("#uvIndex");
+var uvIndexEl = document.querySelector("#uvIndex");
 
 // search history array
 var searchedCities = [];
@@ -65,14 +65,16 @@ var displayWeather = function (weatherData) {
   .then(function (response) {
   
     response.json().then(function (data) {
+      displayForecast(data);
       //  current uvIndex
       $("#current-weather-uvi").text("UVI Index: " + data.current.uvi)
-        
+         // display 5-day forecast
+      
       .then(function () {
         var uvIndexValue = data.current.uvi.toFixed(1);
         
         if (uvIndexValue >= 0) {
-          uvIndex.className = "uv-index-green"
+          "#uvIndex".className = "uv-index-green"
         }
         else if (uvIndexValue >= 3) {
           uvIndex.className = "uv-index-yellow"
@@ -80,11 +82,11 @@ var displayWeather = function (weatherData) {
         else if (uvIndexValue >= 8) {
           uvIndex.className = "uv-index-red"
         }
+        
       })
     
       
-      // display 5-day forecast
-      displayForecast(data);
+     
     });
 
   });
