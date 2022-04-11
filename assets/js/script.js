@@ -61,25 +61,28 @@ var displayWeather = function (weatherData) {
    
   // fetch for uvi and 5day forecast using lat & lon data
   fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + weatherData.coord.lat + "&lon=" + weatherData.coord.lon + "&appid=a42b1bffc45c35fcb28a1fcc1fc29685&units=imperial")
-  var uvIndexValue = data.current.uvi.toFixed(1);
-  uvIndex.id = "uv-index";
-
-    if (uvIndexValue >= 0) {
-      uvIndex.className = "uv-index-green"
-    }
-    else if (uvIndexValue >= 3) {
-      uvIndex.className = "uv-index-yellow"
-    }
-    else if (uvIndexValue >= 8) {
-      uvIndex.className = "uv-index-red"
-    }
-    
+ 
   .then(function (response) {
   
     response.json().then(function (data) {
       //  current uvIndex
       $("#current-weather-uvi").text("UVI Index: " + data.current.uvi)
+
+      var uvIndexValue = data.current.uvi.toFixed(1);
+      uvIndexEl.id = "uv-index";
+    
+      if (uvIndexValue >= 0 && uvIndexValue <= 3) {
+        uvIndexEl.className = "uv-index-green"
+      }
+      else if (uvIndexValue >= 3.1 && uvIndexValue < 8) {
+        uvIndexEl.className = "uv-index-yellow"
+      }
+      else if (uvIndexValue >= 8) {
+        uvIndexEl.className = "uv-index-red"
+        
+      }
       // 5 day forecast call
+        
       displayForecast(data);
     });
 
