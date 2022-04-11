@@ -74,7 +74,7 @@ var displayWeather = function (weatherData) {
       if (uvIndexValue >= 0 && uvIndexValue <= 3) {
         uvIndexEl.className = "uv-index-green"
       }
-      else if (uvIndexValue >= 3.1 && uvIndexValue < 8) {
+      else if (uvIndexValue > 3 && uvIndexValue < 8) {
         uvIndexEl.className = "uv-index-yellow"
       }
       else if (uvIndexValue >= 8) {
